@@ -51,6 +51,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 8
   m_Name: Car
   m_TagString: Cars
@@ -245,6 +246,20 @@ MonoBehaviour:
   cooldown: 1
   cooldownSpeed: .100000001
   cooldownCurrent: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ce78bf6976df14382db3392cdd76ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  additionalStrength: 1
+  cooldown: 1
+  prefab: {fileID: 100002, guid: 52de18d6413f1db4aae9f64262202c69, type: 2}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

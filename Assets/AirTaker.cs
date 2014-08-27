@@ -43,4 +43,15 @@ public class AirTaker : MonoBehaviour
             cooldownCurrent = cooldown;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if ("AirBonus" == other.gameObject.tag)
+        {
+            //CarScript car = GetComponent<CarScript>();
+            //car.ChangeSizeTo(other.transform.localScale.x);
+
+            //Destroy(other.gameObject);
+        }
+    }
 }

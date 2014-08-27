@@ -25,11 +25,22 @@ public class Crash : MonoBehaviour
         }
     }
 
-    void generateBubbles(float value)
-    {
-        Debug.Log("BOOM " + value);
-        int count = 1 + (int)(Random.value * value * 2.0f);
+    public GameObject prefab;
 
+    void generateBubbles(float valueAll)
+    {
+        //Debug.Log("BOOM " + valueAll);
+        //float valueOne = Random.value * valueAll;
+        int count = (int)(Random.value * 10);
+        for (int i = 0; i < count; ++i)
+        {
+            GameObject go = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
+
+            go.rigidbody2D.AddForce(Random.insideUnitCircle * Random.value * 500);
+
+            //valueAll -= valueOne;
+            //valueOne = Random.value * valueAll;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -37,6 +48,7 @@ public class Crash : MonoBehaviour
         if (cooldownCurrent <= 0.0f && additionalStrength * car.Strength < coll.relativeVelocity.magnitude)
         {
             float value = coll.relativeVelocity.magnitude - additionalStrength * car.Strength;
+            //car.ChangeSizeTo();
             generateBubbles(value);
             cooldownCurrent = cooldown;
         }
