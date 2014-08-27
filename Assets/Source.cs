@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Source : MonoBehaviour
 {
-    public float CooldownStart = 0.0f;
-    public float Cooldown = 0.0f;
+    public float CooldownStart = 1.0f;
+    public float Cooldown = 1.0f;
     public float Value = 1.0f;
 
     private float CooldownCurrent = 0.0f;
@@ -41,7 +41,7 @@ public class Source : MonoBehaviour
         particles.enableEmission = false;
     }
 
-    public float getAir()
+    public float CollectAir()
     {
         if (!isCooldown())
         {

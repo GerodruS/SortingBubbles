@@ -59,7 +59,7 @@ public class CarScript : MonoBehaviour
         _previousPosition = _currentPosition;
         _currentPosition = CurrentPosition;
 
-        transform.localScale = new Vector3(Size / SizeOrigin, Size / SizeOrigin, Size / SizeOrigin);
+        transform.localScale = new Vector3(Size, Size, Size);
     }
 
     public void ChangeSizeTo(float rate)
@@ -78,6 +78,12 @@ public class CarScript : MonoBehaviour
         //Debug.Log(string.Format("sizeOld={0} sizeTarget={1} sizeNew={2}", sizeOld, sizeTarget, sizeNew));
 
         Size = sizeNew;
+    }
+
+    public void toChangeAirValue(float delta)
+    {
+        Size += delta;
+        SizeOrigin += delta;
     }
 
 }
