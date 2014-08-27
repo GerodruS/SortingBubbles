@@ -29,6 +29,16 @@ public class CarScript : MonoBehaviour
         }
     }
 
+    public float MovementRate
+    {
+        get
+        {
+            return Size;
+        }
+    }
+
+    public float Size = 1.0f;
+
     private Vector2 _previousPosition;
     private Vector2 _currentPosition;
 

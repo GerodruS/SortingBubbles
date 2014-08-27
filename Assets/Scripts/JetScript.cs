@@ -26,7 +26,8 @@ public class JetScript : MonoBehaviour
         {
             Debug.Log("2");
             Rigidbody2D body = other.GetComponent<Rigidbody2D>();
-            Vector3 value = (transform.rotation * direction) * Time.deltaTime * force;
+            CarScript car = other.GetComponent<CarScript>();
+            Vector3 value = (transform.rotation * direction) * Time.deltaTime * force * car.MovementRate;
             body.AddForce(new Vector2(value.x, value.y));
             Debug.Log(value);
         }
