@@ -4,6 +4,7 @@ using System.Collections;
 public class BubbleController : MonoBehaviour
 {
     public float horizontalSpeed = 10.0f;
+    public string suffix = "P1_";
 
     private CarScript _car;
 
@@ -14,7 +15,7 @@ public class BubbleController : MonoBehaviour
 
     void Update()
     {
-        float horizontalValue = Input.GetAxis("Horizontal");
+        float horizontalValue = Input.GetAxis(suffix + "Horizontal");
         if (0.0f < Mathf.Abs(horizontalValue))
         {
             horizontalValue *= horizontalSpeed;
@@ -24,7 +25,7 @@ public class BubbleController : MonoBehaviour
         }
 
 
-        float verticalValue = Input.GetAxis("Vertical");
+        float verticalValue = Input.GetAxis(suffix + "Vertical");
         _car.ChangeSizeTo(verticalValue);
     }
 }
