@@ -33,26 +33,51 @@ public class CarScript : MonoBehaviour
     {
         get
         {
-            return Size;
+            return Size / SizeOrigin;
         }
     }
 
-    public float Size = 1.0f;
+    public float SizeOrigin = 2.0f;
+    public float Size = 2.0f;
+    public float SizeChangingSpeed = 0.1f;
+    public float SizeMaxDelta = 1.0f;
 
     private Vector2 _previousPosition;
     private Vector2 _currentPosition;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
+        Size = SizeOrigin;
         _currentPosition = CurrentPosition;
         _previousPosition = _currentPosition;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         _previousPosition = _currentPosition;
         _currentPosition = CurrentPosition;
+
+        transform.localScale = new Vector3(Size / SizeOrigin, Size / SizeOrigin, Size / SizeOrigin);
     }
+
+    public void ChangeSizeTo(float rate)
+    {
+        float sizeOld = Size;
+        float sizeTarget = SizeOrigin + SizeMaxDelta * rate;
+        if (sizeTarget < SizeOrigin - SizeMaxDelta)
+        {
+            sizeTarget = SizeOrigin - SizeMaxDelta;
+        }
+        else if (SizeOrigin + SizeMaxDelta < sizeTarget)
+        {
+            sizeTarget = SizeOrigin + SizeMaxDelta;
+        }
+        float sizeNew = sizeOld + (sizeTarget - sizeOld) * SizeChangingSpeed * Time.deltaTime;
+        //Debug.Log(string.Format("sizeOld={0} sizeTarget={1} sizeNew={2}", sizeOld, sizeTarget, sizeNew));
+
+        Size = sizeNew;
+    }
+
 }
