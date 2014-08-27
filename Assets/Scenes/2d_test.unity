@@ -277,7 +277,7 @@ GameObject:
   - 50: {fileID: 153609636}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,7 +361,7 @@ GameObject:
   - 50: {fileID: 153818889}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,7 +517,7 @@ GameObject:
   - 50: {fileID: 237611306}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -712,7 +712,7 @@ GameObject:
   - 50: {fileID: 332202714}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -851,7 +851,7 @@ GameObject:
   - 50: {fileID: 467650253}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1108,7 +1108,7 @@ GameObject:
   - 50: {fileID: 586999596}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1298,7 +1298,7 @@ GameObject:
   - 50: {fileID: 640589330}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1382,7 +1382,7 @@ GameObject:
   - 50: {fileID: 755216354}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1466,7 +1466,7 @@ GameObject:
   - 50: {fileID: 766969419}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1749,7 +1749,7 @@ GameObject:
   - 50: {fileID: 799522320}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1833,7 +1833,7 @@ GameObject:
   - 50: {fileID: 828331135}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2033,7 +2033,7 @@ GameObject:
   - 50: {fileID: 951031945}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2254,7 +2254,7 @@ GameObject:
   - 50: {fileID: 1045586282}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2338,7 +2338,7 @@ GameObject:
   - 50: {fileID: 1054626002}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2422,7 +2422,7 @@ GameObject:
   - 50: {fileID: 1059361733}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2506,7 +2506,7 @@ GameObject:
   - 50: {fileID: 1065044379}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2590,7 +2590,7 @@ GameObject:
   - 50: {fileID: 1132610937}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2746,7 +2746,7 @@ GameObject:
   - 50: {fileID: 1173520314}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2830,7 +2830,7 @@ GameObject:
   - 50: {fileID: 1184167291}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2914,7 +2914,7 @@ GameObject:
   - 50: {fileID: 1198557331}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3058,7 +3058,7 @@ GameObject:
   - 50: {fileID: 1330352435}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3401,7 +3401,7 @@ GameObject:
   - 50: {fileID: 1560099217}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3509,7 +3509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32659fac666534408863196ddb7196e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlayers: 4
+  numberOfPlayers: 1
   carPrefab: {fileID: 400004, guid: 86d4bd6fc5803dc409ad97b61891f62a, type: 2}
   playerPositions:
   - {x: -6, y: 0, z: 0}
@@ -3535,7 +3535,7 @@ GameObject:
   - 50: {fileID: 1703746402}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3679,7 +3679,7 @@ GameObject:
   - 50: {fileID: 1711295050}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3823,7 +3823,7 @@ GameObject:
   - 50: {fileID: 1771680575}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3979,7 +3979,7 @@ GameObject:
   - 50: {fileID: 1850844825}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4063,7 +4063,7 @@ GameObject:
   - 50: {fileID: 1853240656}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4147,7 +4147,7 @@ GameObject:
   - 50: {fileID: 1859965103}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5371,7 +5371,7 @@ GameObject:
   - 50: {fileID: 1934526547}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5455,7 +5455,7 @@ GameObject:
   - 50: {fileID: 1970309491}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5539,7 +5539,7 @@ GameObject:
   - 50: {fileID: 2069636504}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5695,7 +5695,7 @@ GameObject:
   - 50: {fileID: 2108386294}
   m_Layer: 0
   m_Name: CubeWall01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5779,6 +5779,7 @@ GameObject:
   - 114: {fileID: 2125868255}
   - 114: {fileID: 2125868254}
   - 114: {fileID: 2125868259}
+  - 114: {fileID: 2125868260}
   m_Layer: 8
   m_Name: Car
   m_TagString: Cars
@@ -5886,6 +5887,18 @@ MonoBehaviour:
   cooldown: 1
   cooldownSpeed: .100000001
   cooldownCurrent: 0
+--- !u!114 &2125868260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2125868252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ce78bf6976df14382db3392cdd76ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 1
 --- !u!1001 &2135393047
 Prefab:
   m_ObjectHideFlags: 0

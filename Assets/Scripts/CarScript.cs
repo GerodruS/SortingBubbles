@@ -37,6 +37,14 @@ public class CarScript : MonoBehaviour
         }
     }
 
+    public float Strength
+    {
+        get
+        {
+            return SizeOrigin / Size;
+        }
+    }
+
     public float SizeOrigin = 2.0f;
     public float Size = 2.0f;
     public float SizeChangingSpeed = 0.1f;
