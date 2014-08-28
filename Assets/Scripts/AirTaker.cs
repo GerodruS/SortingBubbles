@@ -36,11 +36,14 @@ public class AirTaker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if ("Source" == other.tag && cooldownCurrent <= 0.0f)
+        if ("Source" == other.tag)
         {
-            Source source = other.GetComponent<Source>();
-            target += source.CollectAir();
-            cooldownCurrent = cooldown;
+            if (cooldownCurrent <= 0.0f)
+            {
+                Source source = other.GetComponent<Source>();
+                target += source.CollectAir();
+                cooldownCurrent = cooldown;
+            }
         }
     }
 
@@ -48,6 +51,18 @@ public class AirTaker : MonoBehaviour
     {
         if ("AirBonus" == other.gameObject.tag)
         {
+            AirBonus airBonus = other.gameObject.GetComponent<AirBonus>();
+            if (null == airBonus)
+            {
+                Debug.Log('d');
+            }
+            if (airBonus.isReady())
+            {
+                CarScript car = GetComponent<CarScript>();
+                car.ChangeSizeTo(other.gameObject.transform.localScale.x);
+
+                Destroy(airBonus);
+            }
             //CarScript car = GetComponent<CarScript>();
             //car.ChangeSizeTo(other.transform.localScale.x);
 

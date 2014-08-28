@@ -29,6 +29,7 @@ public class Crash : MonoBehaviour
 
     void generateBubbles(float valueAll)
     {
+        GameObject[] cars = GameObject.FindGameObjectsWithTag("Cars");
         //Debug.Log("BOOM " + valueAll);
         //float valueOne = Random.value * valueAll;
         int count = (int)(Random.value * 10);
@@ -38,6 +39,15 @@ public class Crash : MonoBehaviour
 
             go.rigidbody2D.AddForce(Random.insideUnitCircle * Random.value * 500);
 
+            /*
+            if (cars != null)
+            {
+                for (int j = 0; j < cars.Length; ++j)
+                {
+                    Physics2D.IgnoreLayerCollision(go.GetComponent<Collider2D>(), cars[j].GetComponent<Collider2D>());
+                }
+            }
+            */
             //valueAll -= valueOne;
             //valueOne = Random.value * valueAll;
         }
@@ -54,7 +64,7 @@ public class Crash : MonoBehaviour
         }
         else
         {
-            Debug.Log("no");
+            //Debug.Log("no");
         }
     }
 }
