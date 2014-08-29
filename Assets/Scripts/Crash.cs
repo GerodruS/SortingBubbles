@@ -5,6 +5,10 @@ public class Crash : MonoBehaviour
 {
     public float additionalStrength = 1.0f;
     public float cooldown = 1.0f;
+    public float carSizeMin = 1.0f;
+    public float bubbleSizeMin = 0.1f;
+    public float bubbleSizeMax = 1.0f;
+    public float startSpeedMax = 500.0f;
 
     private CarScript car;
     private float cooldownCurrent = 0.0f;
@@ -25,41 +29,71 @@ public class Crash : MonoBehaviour
         }
     }
 
-    public GameObject prefab;
-
-    void generateBubbles(float valueAll)
+    public GameObject bubbleObject;
+    
+    float GenerateBubble(float size = -1.0f)
     {
-        GameObject[] cars = GameObject.FindGameObjectsWithTag("Cars");
-        //Debug.Log("BOOM " + valueAll);
-        //float valueOne = Random.value * valueAll;
-        int count = (int)(Random.value * 10);
-        for (int i = 0; i < count; ++i)
+        if (size <= 0.0f)
         {
-            GameObject go = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
+            size = bubbleSizeMin + Random.value * (bubbleSizeMax - bubbleSizeMin);
+        }
 
-            go.rigidbody2D.AddForce(Random.insideUnitCircle * Random.value * 500);
+        GameObject obj = (GameObject)Instantiate(bubbleObject, transform.position, Quaternion.identity);
+        obj.transform.localScale = new Vector3(size, size, size);
+        obj.rigidbody2D.AddForce(Random.insideUnitCircle * Random.value * startSpeedMax);
+        
+        return size;
+    }
 
-            /*
-            if (cars != null)
+    void OnCrash(float damage)
+    {
+        float sizeOld = car.SizeOrigin;
+        if (carSizeMin < sizeOld)
+        {
+            car.SizeOrigin = sizeOld * (1 - damage);
+            float sizeBobbles = sizeOld * damage;
+            while (bubbleSizeMin < sizeBobbles)
             {
-                for (int j = 0; j < cars.Length; ++j)
-                {
-                    Physics2D.IgnoreLayerCollision(go.GetComponent<Collider2D>(), cars[j].GetComponent<Collider2D>());
-                }
+                sizeBobbles -= GenerateBubble();
             }
-            */
-            //valueAll -= valueOne;
-            //valueOne = Random.value * valueAll;
+            if (0.0f < sizeBobbles)
+            {
+                GenerateBubble(sizeBobbles);
+            }
         }
     }
 
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if ("AirBonus" == other.tag)
+        {
+            //Debug.Log("!");
+            //Destroy(other);
+        }
+    }
+
+
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (cooldownCurrent <= 0.0f && additionalStrength * car.Strength < coll.relativeVelocity.magnitude)
+        if ("AirBonus" == coll.gameObject.tag)
         {
-            float value = coll.relativeVelocity.magnitude - additionalStrength * car.Strength;
+            //Debug.Log("!");
+            AirBonus bonus = coll.gameObject.GetComponent<AirBonus>();
+            if (bonus.isReady())
+            {
+                float scale = coll.transform.localScale.x;
+                car.SizeOrigin += scale;
+                Destroy(coll.gameObject);
+            }
+        }
+        else if (cooldownCurrent <= 0.0f && additionalStrength * car.Strength < coll.relativeVelocity.magnitude)
+        {
+            //float value = coll.relativeVelocity.magnitude - additionalStrength * car.Strength;
             //car.ChangeSizeTo();
-            generateBubbles(value);
+            float value = 0.2f;
+            OnCrash(value);
             cooldownCurrent = cooldown;
         }
         else
@@ -67,4 +101,5 @@ public class Crash : MonoBehaviour
             //Debug.Log("no");
         }
     }
+
 }

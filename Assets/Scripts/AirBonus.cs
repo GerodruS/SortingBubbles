@@ -10,7 +10,6 @@ public class AirBonus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log('s');
         cooldownCurrent = startCooldown;
     }
 

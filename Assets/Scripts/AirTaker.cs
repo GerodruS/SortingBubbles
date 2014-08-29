@@ -47,26 +47,4 @@ public class AirTaker : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if ("AirBonus" == other.gameObject.tag)
-        {
-            AirBonus airBonus = other.gameObject.GetComponent<AirBonus>();
-            if (null == airBonus)
-            {
-                Debug.Log('d');
-            }
-            if (airBonus.isReady())
-            {
-                CarScript car = GetComponent<CarScript>();
-                car.ChangeSizeTo(other.gameObject.transform.localScale.x);
-
-                Destroy(airBonus);
-            }
-            //CarScript car = GetComponent<CarScript>();
-            //car.ChangeSizeTo(other.transform.localScale.x);
-
-            //Destroy(other.gameObject);
-        }
-    }
 }
