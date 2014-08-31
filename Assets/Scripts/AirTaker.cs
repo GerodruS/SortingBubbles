@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AirTaker : MonoBehaviour
 {
+    /*
     public float speed = 1.0f;
     public float cooldown = 1.0f;
     public float cooldownSpeed = 0.1f;
@@ -10,20 +11,26 @@ public class AirTaker : MonoBehaviour
     private float target = 0.0f;
     public float cooldownCurrent = 0.0f;
 
+    private Bubble _bubble;
+
+    void Start()
+    {
+        _bubble = GetComponent<Bubble>();
+    }
+
     void Update()
     {
         if (0.0f < target)
         {
-            CarScript car = GetComponent<CarScript>();
             float value = speed * Time.deltaTime;
             if (target < value)
             {
-                car.toChangeAirValue(target);
+                _bubble.radius = target;
                 target = 0.0f;
             }
             else
             {
-                car.toChangeAirValue(value);
+                _bubble.radius = value;
                 target -= value;
             }
         }
@@ -46,5 +53,5 @@ public class AirTaker : MonoBehaviour
             }
         }
     }
-
+    */
 }

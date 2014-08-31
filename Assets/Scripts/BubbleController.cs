@@ -20,12 +20,12 @@ public class BubbleController : MonoBehaviour
         {
             horizontalValue *= horizontalSpeed;
             horizontalValue *= Time.deltaTime;
-            horizontalValue *= _car.MovementRate;
+            //horizontalValue *= _car.MovementRate;
             rigidbody2D.AddForce(transform.rotation * new Vector2(horizontalValue, 0));
         }
 
 
         float verticalValue = Input.GetAxis(suffix + "Vertical");
-        _car.ChangeSizeTo(verticalValue);
+        _car.ChangeRadiusTo(verticalValue);
     }
 }

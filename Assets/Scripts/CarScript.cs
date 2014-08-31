@@ -1,97 +1,67 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class CarScript : MonoBehaviour
 {
-    public Vector2 PreviousPosition
+    public float radiusMaxDelta = 0.5f;
+
+    public Vector2 PositionDelta
     {
         get
         {
-            return _previousPosition;
+            return PositionCurrent - PositionPrevious;
         }
     }
 
-    public Vector2 CurrentPosition
+    public Vector2 PositionPrevious
     {
         get
         {
-            float x = transform.position.x;
-            float y = transform.position.y;
-            return new Vector2(x, y);
+            return _positionPrevious;
         }
     }
 
-    public Vector2 DeltaPosition
+    public Vector2 PositionCurrent
     {
         get
         {
-            return CurrentPosition - PreviousPosition;
+            return transform.position;
         }
     }
+
+    private Vector2 _positionCurrent;
+    private Vector2 _positionPrevious;
 
     public float MovementRate
     {
         get
         {
-            return Size / SizeOrigin;
+            return _bubble.Size;
         }
     }
 
-    public float Strength
-    {
-        get
-        {
-            return SizeOrigin / Size;
-        }
-    }
 
-    public float SizeOrigin = 2.0f;
-    public float Size = 2.0f;
-    public float SizeChangingSpeed = 0.1f;
-    public float SizeMaxDelta = 1.0f;
 
-    private Vector2 _previousPosition;
-    private Vector2 _currentPosition;
+    private Bubble _bubble;
 
-    // Use this for initialization
     private void Start()
     {
-        Size = SizeOrigin;
-        _currentPosition = CurrentPosition;
-        _previousPosition = _currentPosition;
+        _bubble = GetComponent<Bubble>();
+
+        _positionCurrent = PositionCurrent;
+        _positionPrevious = _positionCurrent;
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        _previousPosition = _currentPosition;
-        _currentPosition = CurrentPosition;
-
-        transform.localScale = new Vector3(Size, Size, Size);
+        _positionPrevious = _positionCurrent;
+        _positionCurrent = PositionCurrent;
     }
-
-    public void ChangeSizeTo(float rate)
+    
+    public void ChangeRadiusTo(float rate)
     {
-        float sizeOld = Size;
-        float sizeTarget = SizeOrigin + SizeMaxDelta * rate;
-        if (sizeTarget < SizeOrigin - SizeMaxDelta)
-        {
-            sizeTarget = SizeOrigin - SizeMaxDelta;
-        }
-        else if (SizeOrigin + SizeMaxDelta < sizeTarget)
-        {
-            sizeTarget = SizeOrigin + SizeMaxDelta;
-        }
-        float sizeNew = sizeOld + (sizeTarget - sizeOld) * SizeChangingSpeed * Time.deltaTime;
-        //Debug.Log(string.Format("sizeOld={0} sizeTarget={1} sizeNew={2}", sizeOld, sizeTarget, sizeNew));
-
-        Size = sizeNew;
-    }
-
-    public void toChangeAirValue(float delta)
-    {
-        Size += delta;
-        SizeOrigin += delta;
+        _bubble.rate = 1.0f + radiusMaxDelta * rate;
     }
 
 }
