@@ -80,8 +80,36 @@ public class Bubble : MonoBehaviour
             }
         }
 
-        float diameter = GetRadius(true) * 2.0f;
+        float radius = GetRadius(true);
+        float diameter = 2.0f * radius;
         transform.localScale = new Vector3(diameter, diameter, diameter);
+
+        Camera camera = GetComponentInChildren<Camera>();
+        if (camera != null)
+        {
+            float sizeMin = 26.0f * radiusMin;
+            float sizeMax = 14.0f * radiusMax;
+            /*
+            float center = (sizeMax + sizeMin) / 2.0f;
+
+            float value = center + 2.0f * (radius * 5.0f - center);
+            */
+
+            float value = radius * 20.0f;
+            
+            if (value < sizeMin)
+            {
+                camera.orthographicSize = sizeMin;
+            }
+            else if (sizeMax < value)
+            {
+                camera.orthographicSize = sizeMax;
+            }
+            else
+            {
+                camera.orthographicSize = value;
+            }
+        }
     }
 
 }
