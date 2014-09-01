@@ -27,7 +27,6 @@ public class BubbleSource : MonoBehaviour
             Bubble bubbleNew = (Bubble)Instantiate(bubble, transform.position, Quaternion.identity);
             bubbleNew.radiusStart = 0.0f;
             float r = bubbleRadiusMax * Random.value;
-            Debug.Log("R=" + r);
             bubbleNew.SetRadius(r);
             Rigidbody2D body = bubbleNew.GetComponent<Rigidbody2D>();
             body.AddForce(Random.insideUnitCircle * startForce);

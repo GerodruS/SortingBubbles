@@ -40,6 +40,12 @@ public class Bubble : MonoBehaviour
     }
 
 
+    public float GetRadiusTarget()
+    {
+        return _radiusTarget;
+    }
+
+
     private float _radiusCurrent;
     private float _radiusTarget = 0.0f;
     
@@ -62,6 +68,8 @@ public class Bubble : MonoBehaviour
         {
             _radiusTarget = value;
         }
+
+        Update();
     }
 
 

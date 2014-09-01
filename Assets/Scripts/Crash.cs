@@ -5,8 +5,10 @@ using System.Collections;
 public class Crash : MonoBehaviour
 {
     public float strength = 1.0f;
-    public float cooldownTime = 0.0f;
+    public float cooldownTime = 0.1f;
     public float penalty = 0.3f;
+    public Bubble generatedBubble;
+    public float startForce = 10.0f;
 
     private Bubble _bubble;
     private Cooldown _cooldown;
@@ -28,7 +30,7 @@ public class Crash : MonoBehaviour
             {
                 _cooldown.StartTimer(cooldownTime);
 
-                //generateBubbles();
+                generateBubbles(penalty);
 
                 r *= (1.0f - penalty);
                 _bubble.SetRadius(r);
@@ -39,6 +41,21 @@ public class Crash : MonoBehaviour
     private void Update()
     {
         _cooldown.Step();
+    }
+
+    private void generateBubbles(float value)
+    {
+        while (0.1f < value)
+        {
+            Bubble bubbleNew = (Bubble)Instantiate(generatedBubble, transform.position, Quaternion.identity);
+            bubbleNew.radiusStart = 0.0f;
+            float r = (0.1f + Random.value * 0.8f) * value;
+            bubbleNew.SetRadius(r);
+            Rigidbody2D body = bubbleNew.GetComponent<Rigidbody2D>();
+            body.AddForce(Random.insideUnitCircle * startForce);
+
+            value -= r;
+        }
     }
 
 }
