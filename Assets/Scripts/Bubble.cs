@@ -27,6 +27,13 @@ public class Bubble : MonoBehaviour
     }
 
 
+    public void ChangeRadius(float delta)
+    {
+        float value = _radiusTarget + delta;
+        SetRadius(value);
+    }
+
+
     public float GetRadius(bool withRate)
     {
         if (withRate)

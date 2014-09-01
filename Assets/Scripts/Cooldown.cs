@@ -11,11 +11,11 @@ public class Cooldown
         _time = time;
     }
 
-    public void Step()
+    public void Step(float additionalRate = 1.0f)
     {
         if (!isReady())
         {
-            _time -= Time.deltaTime;
+            _time -= Time.deltaTime * additionalRate;
         }
     }
 

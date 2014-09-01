@@ -16,7 +16,7 @@ public class BubbleSelfDestruction : MonoBehaviour
         _bubble = GetComponent<Bubble>();
         _cooldown = new Cooldown();
 
-        _cooldown.StartTimer(cooldownTime * _bubble.GetRadiusTarget() * radiusInfluence);
+        _cooldown.StartTimer(cooldownTime);
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class BubbleSelfDestruction : MonoBehaviour
         }
         else
         {
-            _cooldown.Step();
+            _cooldown.Step(radiusInfluence / _bubble.GetRadiusTarget());
         }
     }
 }

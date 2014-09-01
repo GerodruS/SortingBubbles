@@ -28,12 +28,23 @@ public class Crash : MonoBehaviour
             float r = _bubble.GetRadius(false);
             if (strength / (r * (1.0f + _bubble.rate)) < coll.relativeVelocity.magnitude)
             {
-                _cooldown.StartTimer(cooldownTime);
+                Bubble bubbleOther = coll.gameObject.GetComponent<Bubble>();
+                if (null == bubbleOther || Mathf.Abs(_bubble.GetRadius(true) - bubbleOther.GetRadius(true)) < 0.1f)
+                {
+                    // crash
+                    _cooldown.StartTimer(cooldownTime);
 
-                generateBubbles(penalty);
+                    generateBubbles(penalty);
 
-                r *= (1.0f - penalty);
-                _bubble.SetRadius(r);
+                    r *= (1.0f - penalty);
+                    _bubble.SetRadius(r);
+                }
+                else if (bubbleOther != null && bubbleOther.GetRadius(true) < _bubble.GetRadius(true))
+                {
+                    // absorption
+                    _bubble.ChangeRadius(bubbleOther.GetRadius(false));
+                    Destroy(bubbleOther.gameObject);
+                }
             }
         }
     }
