@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Bubble : MonoBehaviour
 {
-    public float radiusStart = 1.0f;
+    public float radiusStart = 0.0f;
     public float radiusMax = 5.0f;
-    public float radiusMin = 0.5f;
+    public float radiusMin = 0.1f;
     public float radiusChangeStep = 1.0f;
     public float rate = 1.0f;
 
@@ -41,7 +41,7 @@ public class Bubble : MonoBehaviour
 
 
     private float _radiusCurrent;
-    private float _radiusTarget;
+    private float _radiusTarget = 0.0f;
     
 
     public float Size
@@ -56,8 +56,12 @@ public class Bubble : MonoBehaviour
 
     private void Start()
     {
-        _radiusCurrent = radiusStart;
-        _radiusTarget = radiusStart;
+        float value = Mathf.Max(radiusMin, radiusStart);
+        _radiusCurrent = value;
+        if (_radiusTarget <= 0.0f)
+        {
+            _radiusTarget = value;
+        }
     }
 
 
@@ -87,15 +91,15 @@ public class Bubble : MonoBehaviour
         Camera camera = GetComponentInChildren<Camera>();
         if (camera != null)
         {
-            float sizeMin = 26.0f * radiusMin;
-            float sizeMax = 14.0f * radiusMax;
+            float sizeMin = 39.0f * radiusMin;
+            float sizeMax = 21.0f * radiusMax;
             /*
             float center = (sizeMax + sizeMin) / 2.0f;
 
             float value = center + 2.0f * (radius * 5.0f - center);
             */
 
-            float value = radius * 20.0f;
+            float value = radius * 30.0f;
             
             if (value < sizeMin)
             {
