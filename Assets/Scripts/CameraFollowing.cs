@@ -3,8 +3,6 @@ using System.Collections;
 
 public class CameraFollowing : MonoBehaviour
 {
-    public float DistanceRate = 1.0f;
-
     private CarScript _car;
     
 
