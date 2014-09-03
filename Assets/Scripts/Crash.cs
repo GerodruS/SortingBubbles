@@ -51,7 +51,7 @@ public class Crash : MonoBehaviour
 
     private void Update()
     {
-        _cooldown.Step();
+        _cooldown.Step(Time.deltaTime);
     }
 
     private void generateBubbles(float value)

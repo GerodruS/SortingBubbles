@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public class CarScript : MonoBehaviour
+public class Car : MonoBehaviour
 {
     public float radiusMaxDelta = 0.5f;
 
@@ -62,6 +62,24 @@ public class CarScript : MonoBehaviour
     public void ChangeRadiusTo(float rate)
     {
         _bubble.rate = 1.0f + radiusMaxDelta * rate;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        FinishLine finishLine = other.GetComponent<FinishLine>();
+        if (finishLine != null)
+        {
+            bool complete = finishLine.CompleteLap(this);
+            if (complete)
+            {
+                BubbleController controller = GetComponent<BubbleController>();
+                controller.Reset();
+                controller.enabled = false;
+            }
+            else
+            {
+            }
+        }
     }
 
 }

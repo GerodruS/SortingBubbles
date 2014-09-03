@@ -34,7 +34,7 @@ public class BubbleSource : MonoBehaviour
             resetCooldown();
         }
 
-        cooldown.Step();
+        cooldown.Step(Time.deltaTime);
     }
 
 

@@ -7,8 +7,21 @@ public class Bubble : MonoBehaviour
     public float radiusMax = 5.0f;
     public float radiusMin = 0.1f;
     public float radiusChangeStep = 1.0f;
-    public float rate = 1.0f;
 
+    public float rate
+    {
+        get
+        {
+            return _rateValue.CurrentValue;
+        }
+
+        set
+        {
+            _rateValue.SetValue(value);
+        }
+    }
+
+    SmoothlyVaryingValue _rateValue;
 
     public void SetRadius(float value)
     {
@@ -69,6 +82,8 @@ public class Bubble : MonoBehaviour
 
     private void Start()
     {
+        _rateValue = new SmoothlyVaryingValue(1.0f);
+
         float value = Mathf.Max(radiusMin, radiusStart);
         _radiusCurrent = value;
         if (_radiusTarget <= 0.0f)
@@ -129,6 +144,8 @@ public class Bubble : MonoBehaviour
                 camera.orthographicSize = value;
             }
         }
+
+        _rateValue.Step(Time.deltaTime);
     }
 
 }

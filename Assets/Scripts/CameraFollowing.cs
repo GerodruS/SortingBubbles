@@ -3,13 +3,13 @@ using System.Collections;
 
 public class CameraFollowing : MonoBehaviour
 {
-    private CarScript _car;
+    private Car _car;
     
 
     // Use this for initialization
     void Start()
     {
-        _car = GetComponent<CarScript>();
+        _car = GetComponent<Car>();
     }
 
 

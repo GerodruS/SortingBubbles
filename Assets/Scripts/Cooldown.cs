@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 
 
 public class Cooldown
@@ -11,11 +10,11 @@ public class Cooldown
         _time = time;
     }
 
-    public void Step(float additionalRate = 1.0f)
+    public void Step(float deltaTime, float additionalRate = 1.0f)
     {
         if (!isReady())
         {
-            _time -= Time.deltaTime * additionalRate;
+            _time -= deltaTime * additionalRate;
         }
     }
 

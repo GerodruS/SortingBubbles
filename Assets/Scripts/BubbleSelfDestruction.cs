@@ -35,7 +35,7 @@ public class BubbleSelfDestruction : MonoBehaviour
         }
         else
         {
-            _cooldown.Step(radiusInfluence / _bubble.GetRadiusTarget());
+            _cooldown.Step(Time.deltaTime, radiusInfluence / _bubble.GetRadiusTarget());
         }
     }
 }
