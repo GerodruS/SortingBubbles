@@ -6,32 +6,49 @@ public class FinishLine : MonoBehaviour
 {
     public int lapCount = 1;
 
-    private Dictionary<Car, int> lapsProgress;
-    private List<Car> topPlaces;
+    private Dictionary<Car, int> _lapsProgress;
+    private List<Car> _topPlaces;
+    private int _leftToFinish;
 
     private void Start()
     {
-        lapsProgress = new Dictionary<Car, int>();
-        topPlaces = new List<Car>();
+        _lapsProgress = new Dictionary<Car, int>();
+        _topPlaces = new List<Car>();
+
+        GameManager manager = GameObject.Find("Managers").GetComponent<GameManager>();
+        _leftToFinish = manager.numberOfPlayers;
     }
 
     public bool CompleteLap(Car car)
     {
         bool allLaps = false;
 
-        if (!lapsProgress.ContainsKey(car))
+        if (!_lapsProgress.ContainsKey(car))
         {
-            lapsProgress[car] = 1;
+            _lapsProgress[car] = 1;
         }
         else
         {
-            ++lapsProgress[car];
+            ++_lapsProgress[car];
         }
 
-        if (lapsProgress[car] == lapCount)
+
+        if (_lapsProgress[car] == lapCount)
         {
-            topPlaces.Add(car);
+            _topPlaces.Add(car);
             allLaps = true;
+
+            Debug.Log(car.GetComponent<BubbleController>().suffix + " finished at " + (_topPlaces.FindIndex(p => p == car) + 1) + " place!");
+
+            --_leftToFinish;
+            if (0 == _leftToFinish)
+            {
+                Debug.Log("All cars finished! Race is over!");
+            }
+        }
+        else
+        {
+            Debug.Log(car.GetComponent<BubbleController>().suffix + " finished " + _lapsProgress[car] + " lap!");
         }
 
         return allLaps;
@@ -39,19 +56,19 @@ public class FinishLine : MonoBehaviour
 
     public int getLap(Car car)
     {
-        if (!lapsProgress.ContainsKey(car))
+        if (!_lapsProgress.ContainsKey(car))
         {
             return 0;
         }
         else
         {
-            return lapsProgress[car];
+            return _lapsProgress[car];
         }
     }
 
     public int getTopPlace(Car car)
     {
-        int pos = topPlaces.FindIndex(p => p == car);
+        int pos = _topPlaces.FindIndex(p => p == car);
         return pos;
     }
 

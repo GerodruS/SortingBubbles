@@ -47,6 +47,8 @@ public class Car : MonoBehaviour
 
     private void Start()
     {
+        rigidbody2D.isKinematic = true;
+
         _bubble = GetComponent<Bubble>();
 
         _positionCurrent = PositionCurrent;
