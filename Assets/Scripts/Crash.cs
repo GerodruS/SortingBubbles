@@ -12,21 +12,29 @@ public class Crash : MonoBehaviour
     public Bubble generatedBubble;
     public float startForce = 10.0f;
     public int maxCount = 5;
+    public float absorbationStep = 0.1f;
 
     private Bubble _bubble;
     private Cooldown _cooldownCollision;
-
+    private bool init = false;
 
     private void Start()
     {
         _bubble = GetComponent<Bubble>();
         _objectsToIgnoreTemp = new List<Crash>();
         _cooldownCollision = new Cooldown();
+
+        init = true;
     }
 
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
+        if (!init)
+        {
+            return;
+        }
+
         if (_cooldownCollision.isReady())
         {
             float r = _bubble.GetRadius(false);
@@ -50,8 +58,40 @@ public class Crash : MonoBehaviour
                 else if (bubbleOther != null && bubbleOther.GetRadius(true) < _bubble.GetRadius(true))
                 {
                     // absorption
-                    _bubble.ChangeRadius(bubbleOther.GetRadiusTarget());
-                    Destroy(bubbleOther.gameObject);
+                    Car car = bubbleOther.GetComponent<Car>();
+                    if (null == car)
+                    {
+                        float radius = bubbleOther.GetRadiusTarget();
+                        if (radius <= absorbationStep)
+                        {
+                            _bubble.ChangeRadius(radius);
+                            Destroy(bubbleOther.gameObject);
+                        }
+                        else
+                        {
+                            bubbleOther.ChangeRadius(-absorbationStep);
+                            float delta = radius - bubbleOther.GetRadiusTarget();
+                            if (delta < absorbationStep)
+                            {
+                                _bubble.ChangeRadius(radius);
+                                Destroy(bubbleOther.gameObject);
+                            }
+                            else
+                            {
+                                _bubble.ChangeRadius(delta);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        float radiusOld = Mathf.Min(bubbleOther.GetRadiusTarget(), absorbationStep);
+                        bubbleOther.ChangeRadius(-radiusOld);
+                        float delta = radiusOld - bubbleOther.GetRadiusTarget();
+                        if (0.0f < delta)
+                        {
+                            _bubble.ChangeRadius(delta);
+                        }
+                    }
                 }
             }
         }

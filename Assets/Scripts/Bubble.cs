@@ -13,6 +13,10 @@ public class Bubble : MonoBehaviour
     {
         get
         {
+            if (null == _rateValue)
+            {
+                _rateValue = new SmoothlyVaryingValue(1.0f);
+            }
             return _rateValue.CurrentValue;
         }
 

@@ -5,7 +5,8 @@ using System.Collections;
 public class BubbleSource : MonoBehaviour
 {
     public Bubble bubble;
-    public float cooldownMax = 0.0f;
+    public float cooldownMin = 0.1f;
+    public float cooldownMax = 1.0f;
     public float bubbleRadiusMax = 1.0f;
     public float startForce = 1.0f;
 
@@ -42,7 +43,7 @@ public class BubbleSource : MonoBehaviour
     {
         if (0.0f < cooldownMax)
         {
-            float time = cooldownMax * Random.value;
+            float time = cooldownMin + (cooldownMax - cooldownMin) * Random.value;
             cooldown.StartTimer(time);
         }
     }
