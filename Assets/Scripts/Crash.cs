@@ -58,8 +58,8 @@ public class Crash : MonoBehaviour
                 else if (bubbleOther != null && bubbleOther.GetRadius(true) < _bubble.GetRadius(true))
                 {
                     // absorption
-                    Car car = bubbleOther.GetComponent<Car>();
-                    if (null == car)
+                    Car carOther = bubbleOther.GetComponent<Car>();
+                    if (null == carOther)
                     {
                         float radius = bubbleOther.GetRadiusTarget();
                         if (radius <= absorbationStep)
