@@ -7,18 +7,19 @@ public class CameraFollowing : MonoBehaviour
     
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         _car = GetComponent<Car>();
     }
 
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        Vector3 directionCurrent = transform.rotation * new Vector3(0, 1, 0);
-        Vector3 directionTarget = new Vector3(_car.PositionDelta.x, _car.PositionDelta.y, 0);
+        Vector3 directionCurrent = transform.rotation * Vector3.up;
+        Vector2 velocity = _car.rigidbody2D.velocity;
+        Vector3 directionTarget = new Vector3(velocity.x, velocity.y, 0);
         Quaternion q = Quaternion.FromToRotation(directionCurrent, directionTarget);
-        transform.Rotate(q.eulerAngles);
+        transform.Rotate(0.0f, 0.0f, q.eulerAngles.z);
     }
 }
