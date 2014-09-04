@@ -6,26 +6,28 @@ using System.Collections.Generic;
 public class Crash : MonoBehaviour
 {
     public float strength = 1.0f;
-    public float cooldownTime = 0.1f;
+    public float cooldownTimeCollision = 0.1f;
+    public float cooldownTimeIgnore = 0.1f;
     public float penalty = 0.3f;
     public Bubble generatedBubble;
     public float startForce = 10.0f;
     public int maxCount = 5;
 
     private Bubble _bubble;
-    private Cooldown _cooldown;
+    private Cooldown _cooldownCollision;
 
 
     private void Start()
     {
         _bubble = GetComponent<Bubble>();
-        _cooldown = new Cooldown();
+        _objectsToIgnoreTemp = new List<Crash>();
+        _cooldownCollision = new Cooldown();
     }
 
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (_cooldown.isReady())
+        if (_cooldownCollision.isReady())
         {
             float r = _bubble.GetRadius(false);
             if (strength / (r * (1.0f + _bubble.rate)) < coll.relativeVelocity.magnitude)
@@ -34,17 +36,21 @@ public class Crash : MonoBehaviour
                 if (null == bubbleOther || Mathf.Abs(_bubble.GetRadius(true) - bubbleOther.GetRadius(true)) < 0.1f)
                 {
                     // crash
-                    _cooldown.StartTimer(cooldownTime);
+                    _cooldownCollision.StartTimer(cooldownTimeCollision);
 
-                    generateBubbles(penalty, coll.relativeVelocity.magnitude);
-
-                    r *= (1.0f - penalty);
+                    r = _bubble.GetRadiusTarget() * (1.0f - penalty);
+                    float oldSize = _bubble.GetRadiusTarget();
                     _bubble.SetRadius(r);
+
+                    r = oldSize - _bubble.GetRadiusTarget();
+                    float summ = generateBubbles(r, coll.relativeVelocity.magnitude);
+
+                    //Debug.Log(summ + " + " + _bubble.GetRadiusTarget() + " = " + oldSize);
                 }
                 else if (bubbleOther != null && bubbleOther.GetRadius(true) < _bubble.GetRadius(true))
                 {
                     // absorption
-                    _bubble.ChangeRadius(bubbleOther.GetRadius(false));
+                    _bubble.ChangeRadius(bubbleOther.GetRadiusTarget());
                     Destroy(bubbleOther.gameObject);
                 }
             }
@@ -53,44 +59,87 @@ public class Crash : MonoBehaviour
 
     private void Update()
     {
-        _cooldown.Step(Time.deltaTime);
+        _cooldownCollision.Step(Time.deltaTime);
+        for (int i = 0; i < _cooldownIgnore.Count; ++i)
+        {
+            _cooldownIgnore[i].Item1.Step(Time.deltaTime);
+        }
     }
 
-    private List<Bubble> objectsToIgnore = new List<Bubble>();
 
-    private void generateBubbles(float value, float velocity)
+    private void FixedUpdate()
     {
-        objectsToIgnore.Clear();
-        objectsToIgnore.Add(_bubble);
+        for (int i = 0; i < _cooldownIgnore.Count; ++i)
+        {
+            if (_cooldownIgnore[i].Item1.isReady())
+            {
+                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), _cooldownIgnore[i].Item2, false);
+                _cooldownIgnore.RemoveAt(i);
+                --i;
+            }
+        }
+    }
 
-        for (int i = 0; i < maxCount && 0.1f < value; ++i)
+
+    private List<Crash> _objectsToIgnoreTemp = new List<Crash>();
+
+    private float generateBubbles(float value, float velocity)
+    {
+        float result = 0.0f;
+
+        float min = 0.1f;
+
+        _objectsToIgnoreTemp.Add(this);
+
+        for (int i = 0; i < maxCount && min < value; ++i)
         {
             Bubble bubbleNew = (Bubble)Instantiate(generatedBubble, transform.position, Quaternion.identity);
-            objectsToIgnore.Add(bubbleNew);
+            _objectsToIgnoreTemp.Add(bubbleNew.GetComponent<Crash>());
 
             bubbleNew.radiusStart = 0.0f;
 
             float r = (i == maxCount - 1 ?
                        1.0f :
                        0.1f + Random.value * 0.8f) * value;
+            if (r < min)
+            {
+                r = min;
+            }
 
             bubbleNew.SetRadius(r);
+            result += bubbleNew.GetRadiusTarget();
             Rigidbody2D body = bubbleNew.GetComponent<Rigidbody2D>();
             body.AddForce(Random.insideUnitCircle * startForce * velocity);
 
             value -= r;
         }
 
-        int count = objectsToIgnore.Count;
+        int count = _objectsToIgnoreTemp.Count;
         for (int i = 0; i < count; ++i)
         {
-            Bubble a = objectsToIgnore[i];
-            for (int j = 0; j < count; ++j)
+            Crash a = _objectsToIgnoreTemp[i];
+            for (int j = i + 1; j < count; ++j)
             {
-                Bubble b = objectsToIgnore[j];
-                a.IgnoreCollision(b);
+                Crash b = _objectsToIgnoreTemp[j];
+                a.IgnoreCollision(b.GetComponent<Collider2D>());
             }
         }
+
+        _objectsToIgnoreTemp.Clear();
+
+        return result;
+    }
+
+    List<Eppy.Tuple<Cooldown, Collider2D>> _cooldownIgnore = new List<Eppy.Tuple<Cooldown, Collider2D>>();
+
+    public void IgnoreCollision(Collider2D other)
+    {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), other);
+
+        Cooldown cooldown = new Cooldown();
+        cooldown.StartTimer(cooldownTimeIgnore);
+        _cooldownIgnore.Add(new Eppy.Tuple<Cooldown, Collider2D>(cooldown, other));
+        
     }
 
 }

@@ -18,6 +18,10 @@ public class Bubble : MonoBehaviour
 
         set
         {
+            if (null == _rateValue)
+            {
+                _rateValue = new SmoothlyVaryingValue(1.0f);
+            }
             _rateValue.SetValue(value);
         }
     }
@@ -83,7 +87,10 @@ public class Bubble : MonoBehaviour
 
     private void Start()
     {
-        _rateValue = new SmoothlyVaryingValue(1.0f);
+        if (null == _rateValue)
+        {
+            _rateValue = new SmoothlyVaryingValue(1.0f);
+        }
 
         float value = Mathf.Max(radiusMin, radiusStart);
         _radiusCurrent = value;
@@ -147,12 +154,6 @@ public class Bubble : MonoBehaviour
         }
 
         _rateValue.Step(Time.deltaTime);
-    }
-
-
-    public void IgnoreCollision(Bubble otherBubble)
-    {
-        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), otherBubble.GetComponent<Collider2D>());
     }
 
 }

@@ -49,7 +49,10 @@ public class Car : MonoBehaviour
     {
         rigidbody2D.isKinematic = true;
 
-        _bubble = GetComponent<Bubble>();
+        if (null == _bubble)
+        {
+            _bubble = GetComponent<Bubble>();
+        }
 
         _positionCurrent = PositionCurrent;
         _positionPrevious = _positionCurrent;
@@ -63,6 +66,10 @@ public class Car : MonoBehaviour
     
     public void ChangeRadiusTo(float rate)
     {
+        if (null == _bubble)
+        {
+            _bubble = GetComponent<Bubble>();
+        }
         _bubble.rate = 1.0f + radiusMaxDelta * rate;
     }
 
