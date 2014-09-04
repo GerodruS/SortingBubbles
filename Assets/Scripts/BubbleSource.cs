@@ -20,7 +20,7 @@ public class BubbleSource : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (cooldown.isReady())
         {

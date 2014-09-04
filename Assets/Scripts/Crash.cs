@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class Crash : MonoBehaviour
@@ -9,6 +10,7 @@ public class Crash : MonoBehaviour
     public float penalty = 0.3f;
     public Bubble generatedBubble;
     public float startForce = 10.0f;
+    public int maxCount = 5;
 
     private Bubble _bubble;
     private Cooldown _cooldown;
@@ -34,7 +36,7 @@ public class Crash : MonoBehaviour
                     // crash
                     _cooldown.StartTimer(cooldownTime);
 
-                    generateBubbles(penalty);
+                    generateBubbles(penalty, coll.relativeVelocity.magnitude);
 
                     r *= (1.0f - penalty);
                     _bubble.SetRadius(r);
@@ -54,18 +56,40 @@ public class Crash : MonoBehaviour
         _cooldown.Step(Time.deltaTime);
     }
 
-    private void generateBubbles(float value)
+    private List<Bubble> objectsToIgnore = new List<Bubble>();
+
+    private void generateBubbles(float value, float velocity)
     {
-        while (0.1f < value)
+        objectsToIgnore.Clear();
+        objectsToIgnore.Add(_bubble);
+
+        for (int i = 0; i < maxCount && 0.1f < value; ++i)
         {
             Bubble bubbleNew = (Bubble)Instantiate(generatedBubble, transform.position, Quaternion.identity);
+            objectsToIgnore.Add(bubbleNew);
+
             bubbleNew.radiusStart = 0.0f;
-            float r = (0.1f + Random.value * 0.8f) * value;
+
+            float r = (i == maxCount - 1 ?
+                       1.0f :
+                       0.1f + Random.value * 0.8f) * value;
+
             bubbleNew.SetRadius(r);
             Rigidbody2D body = bubbleNew.GetComponent<Rigidbody2D>();
-            body.AddForce(Random.insideUnitCircle * startForce);
+            body.AddForce(Random.insideUnitCircle * startForce * velocity);
 
             value -= r;
+        }
+
+        int count = objectsToIgnore.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            Bubble a = objectsToIgnore[i];
+            for (int j = 0; j < count; ++j)
+            {
+                Bubble b = objectsToIgnore[j];
+                a.IgnoreCollision(b);
+            }
         }
     }
 

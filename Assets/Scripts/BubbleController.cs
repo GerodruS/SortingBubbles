@@ -13,7 +13,7 @@ public class BubbleController : MonoBehaviour
         _car = GetComponent<Car>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float horizontalValue = Input.GetAxis(suffix + "Horizontal");
         float verticalValue = Input.GetAxis(suffix + "Vertical");

@@ -91,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.57600403, y: -3.01118088, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -259,7 +259,8 @@ MonoBehaviour:
   cooldownTime: 1
   penalty: .5
   generatedBubble: {fileID: 11400000, guid: 4ef0c3510c7a4d747a9533eaf9f311bc, type: 2}
-  startForce: 10
+  startForce: 100
+  maxCount: 5
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,7 +276,6 @@ MonoBehaviour:
   radiusMax: 5
   radiusMin: .5
   radiusChangeStep: 1
-  rate: 1
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

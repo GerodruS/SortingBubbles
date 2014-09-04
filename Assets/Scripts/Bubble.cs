@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Bubble : MonoBehaviour
 {
@@ -146,6 +147,12 @@ public class Bubble : MonoBehaviour
         }
 
         _rateValue.Step(Time.deltaTime);
+    }
+
+
+    public void IgnoreCollision(Bubble otherBubble)
+    {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), otherBubble.GetComponent<Collider2D>());
     }
 
 }
