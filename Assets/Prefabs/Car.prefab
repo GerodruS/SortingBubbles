@@ -31,7 +31,7 @@ GameObject:
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ Camera:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -167,7 +167,7 @@ Rigidbody2D:
   m_LinearDrag: 1
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -208,7 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a643f8fb560017343bc17c2d7622a966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAngleStep: 10
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,7 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8e454b54d7a0843a611ed926e88b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 1000
+  verticalSpeed: 5
+  horizontalSpeed: 10
   suffix: P1_
 --- !u!114 &11400006
 MonoBehaviour:

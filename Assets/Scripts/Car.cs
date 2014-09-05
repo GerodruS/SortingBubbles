@@ -22,6 +22,16 @@ public class Car : MonoBehaviour
         }
     }
 
+    public Vector2 CurrentDirection
+    {
+        get
+        {
+            return null == _bubble ?
+                   Vector2.zero :
+                   _bubble.CurrentDirection;
+        }
+    }
+
     public Vector2 PositionCurrent
     {
         get

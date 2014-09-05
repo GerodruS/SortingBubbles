@@ -22,7 +22,7 @@ public class CameraFollowing : MonoBehaviour
         Vector2 velocity = _car.rigidbody2D.velocity;
         velocity.Normalize();
 
-        velocity += _bubbleController.CurrentDirection * 10.0f;
+        velocity += _car.CurrentDirection * 10.0f;
 
         Vector3 directionTarget = new Vector3(velocity.x, velocity.y, 0);
         Quaternion q = Quaternion.FromToRotation(directionCurrent, directionTarget);

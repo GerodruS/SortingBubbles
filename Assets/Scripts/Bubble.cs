@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Bubble : MonoBehaviour
 {
+    public float verticalSpeed = 2.0f;
     public float radiusStart = 0.0f;
     public float radiusMax = 5.0f;
     public float radiusMin = 0.1f;
@@ -30,7 +31,19 @@ public class Bubble : MonoBehaviour
         }
     }
 
-    SmoothlyVaryingValue _rateValue;
+    public Vector2 CurrentDirection
+    {
+        get
+        {
+            return _currentDirection;
+        }
+    }
+
+
+    private SmoothlyVaryingValue _rateValue;
+    private Vector2 _currentDirection = Vector2.zero;
+    private List<Vector2> directions = new List<Vector2>();
+
 
     public void SetRadius(float value)
     {
@@ -103,11 +116,11 @@ public class Bubble : MonoBehaviour
             _radiusTarget = value;
         }
 
-        Update();
+        FixedUpdate();
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_radiusCurrent < _radiusTarget)
         {
@@ -158,6 +171,31 @@ public class Bubble : MonoBehaviour
         }
 
         _rateValue.Step(Time.deltaTime);
+
+        {
+            Vector2 v = Vector2.zero;
+
+            for (int i = 0, count = directions.Count; i < count; ++i)
+            {
+                v += directions[i];
+            }
+            v.Normalize();
+
+            rigidbody2D.AddForce(v * verticalSpeed * Size);
+            _currentDirection = v;
+
+            directions.Clear();
+        }
+    }
+
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (9 == other.gameObject.layer)
+        {
+            Vector2 v = other.gameObject.transform.rotation * Vector2.up;
+            directions.Add(v * Size);
+        }
     }
 
 }
