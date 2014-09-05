@@ -43,7 +43,7 @@ public class Crash : MonoBehaviour
                 Bubble bubbleOther = coll.gameObject.GetComponent<Bubble>();
                 if (null == bubbleOther || Mathf.Abs(_bubble.GetRadius(true) - bubbleOther.GetRadius(true)) < 0.1f)
                 {
-                    // crash
+                    // simple crash
                     _cooldownCollision.StartTimer(cooldownTimeCollision);
 
                     r = _bubble.GetRadiusTarget() * (1.0f - penalty);
@@ -52,50 +52,74 @@ public class Crash : MonoBehaviour
 
                     r = oldSize - _bubble.GetRadiusTarget();
                     float summ = generateBubbles(r, coll.relativeVelocity.magnitude);
-
-                    //Debug.Log(summ + " + " + _bubble.GetRadiusTarget() + " = " + oldSize);
                 }
-                else if (bubbleOther != null && bubbleOther.GetRadius(true) < _bubble.GetRadius(true))
+                else if (bubbleOther != null)
                 {
-                    // absorption
                     Car carOther = bubbleOther.GetComponent<Car>();
+                    Car car = GetComponent<Car>();
                     if (null == carOther)
                     {
-                        float radius = bubbleOther.GetRadiusTarget();
-                        if (radius <= absorbationStep)
+                        if (null == car)
                         {
-                            _bubble.ChangeRadius(radius);
-                            Destroy(bubbleOther.gameObject);
+                            // other is simple bubble
+                            //  this is simple bubble
+                            omnomnom(bubbleOther, false);
                         }
                         else
                         {
-                            bubbleOther.ChangeRadius(-absorbationStep);
-                            float delta = radius - bubbleOther.GetRadiusTarget();
-                            if (delta < absorbationStep)
-                            {
-                                _bubble.ChangeRadius(radius);
-                                Destroy(bubbleOther.gameObject);
-                            }
-                            else
-                            {
-                                _bubble.ChangeRadius(delta);
-                            }
+                            // other is simple bubble
+                            //  this is car
+                            omnomnom(bubbleOther, true);
                         }
                     }
                     else
                     {
-                        float radiusOld = Mathf.Min(bubbleOther.GetRadiusTarget(), absorbationStep);
-                        bubbleOther.ChangeRadius(-radiusOld);
-                        float delta = radiusOld - bubbleOther.GetRadiusTarget();
-                        if (0.0f < delta)
+                        if (null == car)
                         {
-                            _bubble.ChangeRadius(delta);
+                            // other is car
+                            //  this is simple bubble
+                            //  do nothing
+                        }
+                        else
+                        {
+                            // other is car
+                            //  this is car
+                            // union
                         }
                     }
                 }
             }
         }
     }
+
+
+    private void omnomnom(Bubble bubbleOther, bool forceAbsorbation)
+    {
+        if (forceAbsorbation || bubbleOther.GetRadius(true) < _bubble.GetRadius(true))
+        {
+            float radius = bubbleOther.GetRadiusTarget();
+            if (radius <= absorbationStep)
+            {
+                _bubble.ChangeRadius(radius);
+                Destroy(bubbleOther.gameObject);
+            }
+            else
+            {
+                bubbleOther.ChangeRadius(-absorbationStep);
+                float delta = radius - bubbleOther.GetRadiusTarget();
+                if (delta < absorbationStep)
+                {
+                    _bubble.ChangeRadius(radius);
+                    Destroy(bubbleOther.gameObject);
+                }
+                else
+                {
+                    _bubble.ChangeRadius(delta);
+                }
+            }
+        }
+    }
+
 
     private void Update()
     {
