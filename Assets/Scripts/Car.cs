@@ -43,16 +43,6 @@ public class Car : MonoBehaviour
     private Vector2 _positionCurrent;
     private Vector2 _positionPrevious;
 
-    public float MovementRate
-    {
-        get
-        {
-            return _bubble.Size;
-        }
-    }
-
-
-
     private Bubble _bubble;
 
     private void Start()

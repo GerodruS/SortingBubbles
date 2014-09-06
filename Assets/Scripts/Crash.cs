@@ -54,8 +54,8 @@ public class Crash : MonoBehaviour
                     }
                     else
                     {
-                        r = _bubble.GetRadiusTarget() * (1.0f - penalty);
                         float oldSize = _bubble.GetRadiusTarget();
+                        r = oldSize * (1.0f - penalty);
                         _bubble.SetRadius(r);
 
                         r = oldSize - _bubble.GetRadiusTarget();
@@ -125,7 +125,7 @@ public class Crash : MonoBehaviour
                 }
                 else
                 {
-                    _bubble.ChangeRadius(delta);
+                    _bubble.ChangeRadius(absorbationStep);
                 }
             }
         }
@@ -161,32 +161,35 @@ public class Crash : MonoBehaviour
     private float generateBubbles(float value, float velocity)
     {
         float result = 0.0f;
-
-        float min = 0.1f;
-
+        
         _objectsToIgnoreTemp.Add(this);
 
-        for (int i = 0; i < maxCount && min < value; ++i)
+        for (int i = 0; i < maxCount; ++i)
         {
             Bubble bubbleNew = (Bubble)Instantiate(generatedBubble, transform.position, Quaternion.identity);
-            _objectsToIgnoreTemp.Add(bubbleNew.GetComponent<Crash>());
 
             bubbleNew.radiusStart = 0.0f;
 
             float r = (i == maxCount - 1 ?
                        1.0f :
                        0.1f + Random.value * 0.8f) * value;
-            if (r < min)
-            {
-                r = min;
-            }
 
             bubbleNew.SetRadius(r);
             result += bubbleNew.GetRadiusTarget();
-            Rigidbody2D body = bubbleNew.GetComponent<Rigidbody2D>();
-            body.AddForce(Random.insideUnitCircle * startForce * velocity);
+            if (value < result)
+            {
+                Destroy(bubbleNew.gameObject);
+                value = 0;
+                break;
+            }
+            else
+            {
+                Rigidbody2D body = bubbleNew.GetComponent<Rigidbody2D>();
+                body.AddForce(Random.insideUnitCircle * startForce * velocity);
 
-            value -= r;
+                _objectsToIgnoreTemp.Add(bubbleNew.GetComponent<Crash>());
+                value -= r;
+            }
         }
 
         int count = _objectsToIgnoreTemp.Count;

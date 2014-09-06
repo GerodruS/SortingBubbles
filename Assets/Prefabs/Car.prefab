@@ -246,7 +246,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Radius: .600000024
@@ -330,7 +330,7 @@ MonoBehaviour:
   penalty: .200000003
   generatedBubble: {fileID: 11400000, guid: 4ef0c3510c7a4d747a9533eaf9f311bc, type: 2}
   startForce: 100
-  maxCount: 3
+  maxCount: 5
   absorbationStep: .5
 --- !u!114 &11400010
 MonoBehaviour:
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926943d33ee5271459b62c25dd95f8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 5
+  verticalSpeed: 4
   radiusStart: 2
   radiusMax: 10
   radiusMin: .699999988
