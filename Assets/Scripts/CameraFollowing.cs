@@ -3,9 +3,10 @@ using System.Collections;
 
 public class CameraFollowing : MonoBehaviour
 {
+    public float maxAngle = 1.0f;
+
     private Car _car;
     private BubbleController _bubbleController;
-    private float maxAngle = 1.0f;
 
     private void Start()
     {
