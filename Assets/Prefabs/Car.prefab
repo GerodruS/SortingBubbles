@@ -231,9 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8e454b54d7a0843a611ed926e88b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 5
   horizontalSpeed: 10
-  suffix: P1_
+  suffixes: []
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926943d33ee5271459b62c25dd95f8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  verticalSpeed: 2
   radiusStart: 1
   radiusMax: 5
   radiusMin: .5

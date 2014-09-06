@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BubbleController : MonoBehaviour
 {
     public float horizontalSpeed = 10.0f;
-    public string suffix = "P1_";
+    public List<string> suffixes = new List<string>();
 
 
     private Bubble _bubble;
@@ -21,8 +21,13 @@ public class BubbleController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontalValue = Input.GetAxis(suffix + "Horizontal");
-        float verticalValue = Input.GetAxis(suffix + "Vertical");
+        float horizontalValue = 0;
+        float verticalValue = 0;
+        for (int i = 0, count = suffixes.Count; i < count; ++i)
+        {
+            horizontalValue += Input.GetAxis(suffixes[i] + "Horizontal");
+            verticalValue += Input.GetAxis(suffixes[i] + "Vertical");
+        }
         Control(horizontalValue, verticalValue);
     }
 
@@ -32,6 +37,7 @@ public class BubbleController : MonoBehaviour
         if (0.0f < Mathf.Abs(horizontalValue))
         {
             horizontalValue *= horizontalSpeed;
+            horizontalValue *= _bubble.Size;
             Quaternion q = Quaternion.EulerAngles(0.0f, 0.0f, -90.0f);
             rigidbody2D.AddForce(q * _bubble.CurrentDirection * horizontalValue);
         }

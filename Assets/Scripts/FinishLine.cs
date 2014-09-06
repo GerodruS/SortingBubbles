@@ -32,13 +32,19 @@ public class FinishLine : MonoBehaviour
             ++_lapsProgress[car];
         }
 
+        string suffixesString = string.Empty;
+        List<string> suffixesList = car.GetComponent<BubbleController>().suffixes;
+        for (int i = 0, count = suffixesList.Count; i < count; ++i)
+        {
+            suffixesString += suffixesList[i] + " ";
+        }
 
         if (_lapsProgress[car] == lapCount)
         {
             _topPlaces.Add(car);
             allLaps = true;
-
-            Debug.Log(car.GetComponent<BubbleController>().suffix + " finished at " + (_topPlaces.FindIndex(p => p == car) + 1) + " place!");
+                        
+            Debug.Log(suffixesString + "finished at " + (_topPlaces.FindIndex(p => p == car) + 1) + " place!");
 
             --_leftToFinish;
             if (0 == _leftToFinish)
@@ -48,7 +54,7 @@ public class FinishLine : MonoBehaviour
         }
         else
         {
-            Debug.Log(car.GetComponent<BubbleController>().suffix + " finished " + _lapsProgress[car] + " lap!");
+            Debug.Log(suffixesString + "finished " + _lapsProgress[car] + " lap!");
         }
 
         return allLaps;

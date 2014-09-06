@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
         {
             var car = Instantiate(carPrefab, playerPositions[i], Quaternion.identity) as Transform;
             var controller = car.GetComponent<BubbleController>();
-            controller.suffix = "P" + (i + 1).ToString() + "_";
+            controller.suffixes.Add("P" + (i + 1).ToString() + "_");
 
             var camera = car.GetComponentInChildren<Camera>();
             camera.rect = cameraRectangles[i];
