@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926943d33ee5271459b62c25dd95f8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  verticalSpeed: 5
   radiusStart: 0
   radiusMax: 5
   radiusMin: .100000001
   radiusChangeStep: 1
-  rate: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,10 +115,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 1
-  cooldownTime: .5
+  cooldownTimeCollision: .100000001
+  cooldownTimeIgnore: .100000001
   penalty: .300000012
   generatedBubble: {fileID: 11400000}
   startForce: 10
+  maxCount: 5
+  absorbationStep: .100000001
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
