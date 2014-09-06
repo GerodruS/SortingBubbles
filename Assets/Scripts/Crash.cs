@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 
 public class Crash : MonoBehaviour
@@ -56,10 +57,10 @@ public class Crash : MonoBehaviour
                 else if (bubbleOther != null)
                 {
                     Car carOther = bubbleOther.GetComponent<Car>();
-                    Car car = GetComponent<Car>();
+                    Car carThis = GetComponent<Car>();
                     if (null == carOther)
                     {
-                        if (null == car)
+                        if (null == carThis)
                         {
                             // other is simple bubble
                             //  this is simple bubble
@@ -74,7 +75,7 @@ public class Crash : MonoBehaviour
                     }
                     else
                     {
-                        if (null == car)
+                        if (null == carThis)
                         {
                             // other is car
                             //  this is simple bubble
@@ -85,6 +86,21 @@ public class Crash : MonoBehaviour
                             // other is car
                             //  this is car
                             // union
+
+                            // controll
+                            BubbleController controllerThis = carThis.GetComponent<BubbleController>();
+                            BubbleController controllerOther = carOther.GetComponent<BubbleController>();
+                            controllerThis.suffixes.AddRange(controllerOther.suffixes);
+                            controllerThis.suffixes = controllerThis.suffixes.Distinct().ToList();
+                            //
+
+                            // size
+                            _bubble.ChangeRadius(bubbleOther.GetRadiusTarget());
+                            Destroy(bubbleOther.gameObject);
+                            //
+
+                            // change color
+                            // 
                         }
                     }
                 }

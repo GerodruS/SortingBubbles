@@ -1828,7 +1828,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 10
-  suffixes: []
 --- !u!114 &421254980
 MonoBehaviour:
   m_ObjectHideFlags: 0

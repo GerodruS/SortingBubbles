@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Eppy;
 
 public class FinishLine : MonoBehaviour
 {
@@ -33,10 +34,10 @@ public class FinishLine : MonoBehaviour
         }
 
         string suffixesString = string.Empty;
-        List<string> suffixesList = car.GetComponent<BubbleController>().suffixes;
+        List<Tuple<string, float>> suffixesList = car.GetComponent<BubbleController>().suffixes;
         for (int i = 0, count = suffixesList.Count; i < count; ++i)
         {
-            suffixesString += suffixesList[i] + " ";
+            suffixesString += suffixesList[i].Item1 + " ";
         }
 
         if (_lapsProgress[car] == lapCount)

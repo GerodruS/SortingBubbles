@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Eppy;
 
 public class BubbleController : MonoBehaviour
 {
     public float horizontalSpeed = 10.0f;
-    public List<string> suffixes = new List<string>();
+    public List<Tuple<string, float>> suffixes = new List<Tuple<string, float>>();
 
 
     private Bubble _bubble;
@@ -25,8 +26,8 @@ public class BubbleController : MonoBehaviour
         float verticalValue = 0;
         for (int i = 0, count = suffixes.Count; i < count; ++i)
         {
-            horizontalValue += Input.GetAxis(suffixes[i] + "Horizontal");
-            verticalValue += Input.GetAxis(suffixes[i] + "Vertical");
+            horizontalValue += Input.GetAxis(suffixes[i].Item1 + "Horizontal");
+            verticalValue += Input.GetAxis(suffixes[i].Item1 + "Vertical");
         }
         Control(horizontalValue, verticalValue);
     }

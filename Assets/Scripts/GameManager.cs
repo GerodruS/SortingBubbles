@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Eppy;
 
 public class GameManager : MonoBehaviour {
 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour {
         {
             var car = Instantiate(carPrefab, playerPositions[i], Quaternion.identity) as Transform;
             var controller = car.GetComponent<BubbleController>();
-            controller.suffixes.Add("P" + (i + 1).ToString() + "_");
+            controller.suffixes.Add(new Tuple<string, float>("P" + (i + 1).ToString() + "_", 1.0f));
 
             var camera = car.GetComponentInChildren<Camera>();
             camera.rect = cameraRectangles[i];
