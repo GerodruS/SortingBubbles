@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Eppy;
+using System.Linq;
+
 
 public class BubbleController : MonoBehaviour
 {
@@ -50,6 +52,51 @@ public class BubbleController : MonoBehaviour
     public void Reset()
     {
         Control(0.0f, 0.0f);
+    }
+
+    public void Absorbtion(Bubble bubbleOther)
+    {
+        Bubble bubbleThis = _bubble;
+
+        // controll
+        BubbleController controllerThis = this;
+        BubbleController controllerOther = bubbleOther.GetComponent<BubbleController>();
+
+        // suffixes & sizes
+        float[] sizesThis = bubbleThis.getSizes();
+        float[] sizesOther = bubbleOther.getSizes();
+        float sizeAll = bubbleThis.GetRadiusTarget() + bubbleOther.GetRadiusTarget();
+        for (int i = 0, count = sizesThis.Length; i < count; ++i)
+        {
+            controllerThis.suffixes[i] = new Tuple<string, float>(controllerThis.suffixes[i].Item1, sizesThis[i] / sizeAll);
+        }
+        for (int i = 0, count = sizesOther.Length; i < count; ++i)
+        {
+            controllerOther.suffixes[i] = new Tuple<string, float>(controllerOther.suffixes[i].Item1, sizesOther[i] / sizeAll);
+        }
+        controllerThis.suffixes.AddRange(controllerOther.suffixes);
+        //controllerThis.suffixes = controllerThis.suffixes.Distinct().ToList();
+
+        // size
+        _bubble.ChangeRadius(bubbleOther.GetRadiusTarget());
+        //
+
+        // change color
+        //GameObject managers = GameObject.Find("Managers");
+        //GameManager gameManager = managers.GetComponent<GameManager>();
+        var meshRendererThis = GetComponentInChildren<MeshRenderer>().material;
+        var meshRendererOther = bubbleOther.GetComponentInChildren<MeshRenderer>().material;
+        float r = (meshRendererThis.color.r + meshRendererOther.color.r) / 2.0f;
+        float g = (meshRendererThis.color.g + meshRendererOther.color.g) / 2.0f;
+        float b = (meshRendererThis.color.b + meshRendererOther.color.b) / 2.0f;
+        meshRendererThis.color = new Color(r, g, b);
+        // 
+
+        // camera
+
+        //
+
+        Destroy(bubbleOther.gameObject);
     }
 
 }

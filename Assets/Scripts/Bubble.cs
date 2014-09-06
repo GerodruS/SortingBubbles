@@ -198,4 +198,24 @@ public class Bubble : MonoBehaviour
         }
     }
 
+    public float[] getSizes()
+    {
+        BubbleController controller = GetComponent<BubbleController>();
+        if (controller != null)
+        {
+            int count = controller.suffixes.Count;
+            float[] sizes = new float[count];
+            float sizeAll = _radiusTarget;
+            for (int i = 0; i < count; ++i)
+            {
+                sizes[i] = controller.suffixes[i].Item2 * sizeAll;
+            }
+            return sizes;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 }
