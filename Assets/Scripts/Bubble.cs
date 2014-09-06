@@ -143,19 +143,16 @@ public class Bubble : MonoBehaviour
         float diameter = 2.0f * radius;
         transform.localScale = new Vector3(diameter, diameter, diameter);
 
-        Camera camera = GetComponentInChildren<Camera>();
-        if (camera != null)
+        Camera[] cameras = GetComponentsInChildren<Camera>();
+        for (int i = 0, count = cameras.Length; i < count; ++i)
         {
+            Camera camera = cameras[i];
+
             float sizeMin = 39.0f * radiusMin;
             float sizeMax = 21.0f * radiusMax;
-            /*
-            float center = (sizeMax + sizeMin) / 2.0f;
-
-            float value = center + 2.0f * (radius * 5.0f - center);
-            */
 
             float value = radius * 30.0f;
-            
+
             if (value < sizeMin)
             {
                 camera.orthographicSize = sizeMin;

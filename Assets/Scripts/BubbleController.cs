@@ -93,7 +93,11 @@ public class BubbleController : MonoBehaviour
         // 
 
         // camera
-
+        var camerasOther = bubbleOther.GetComponentsInChildren<Camera>();
+        for (int i = 0, count = camerasOther.Length; i < count; ++i)
+        {
+            camerasOther[i].transform.parent = gameObject.transform;
+        }
         //
 
         Destroy(bubbleOther.gameObject);

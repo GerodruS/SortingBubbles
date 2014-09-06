@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
             controller.suffixes.Add(new Tuple<string, float>("P" + (i + 1).ToString() + "_", 1.0f));
 
             var camera = car.GetComponentInChildren<Camera>();
+            camera.name = "P" + (i + 1).ToString() + "_Camera";
             camera.rect = cameraRectangles[i];
 
             var meshRenderer = car.GetComponentInChildren<MeshRenderer>();
