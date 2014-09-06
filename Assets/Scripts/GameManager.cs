@@ -15,21 +15,30 @@ public class GameManager : MonoBehaviour {
 
     void CreatePlayers()
     {
-        var cameraRectangles = GetCameraRects();
-
         for (int i = 0; i < numberOfPlayers; i++)
         {
-            var car = Instantiate(carPrefab, playerPositions[i], Quaternion.identity) as Transform;
-            var controller = car.GetComponent<BubbleController>();
-            controller.suffixes.Add(new Tuple<string, float>("P" + (i + 1).ToString() + "_", 1.0f));
-
-            var camera = car.GetComponentInChildren<Camera>();
-            camera.name = "P" + (i + 1).ToString() + "_Camera";
-            camera.rect = cameraRectangles[i];
-
-            var meshRenderer = car.GetComponentInChildren<MeshRenderer>();
-            meshRenderer.material = carMaterials[i];
+            CreatePlayer(i);
         }
+    }
+
+    public GameObject CreatePlayer(int i)
+    {
+        var cameraRectangles = GetCameraRects();
+
+        Debug.Log("Create " + i);
+        var car = Instantiate(carPrefab, playerPositions[i], Quaternion.identity) as Transform;
+        car.rigidbody2D.isKinematic = true;
+        var controller = car.GetComponent<BubbleController>();
+        controller.suffixes.Add(new Tuple<string, float>("P" + (i + 1).ToString() + "_", 1.0f));
+
+        var camera = car.GetComponentInChildren<Camera>();
+        camera.name = "P" + (i + 1).ToString() + "_Camera";
+        camera.rect = cameraRectangles[i];
+
+        var meshRenderer = car.GetComponentInChildren<MeshRenderer>();
+        meshRenderer.material = carMaterials[i];
+
+        return car.gameObject;
     }
 
     Rect[] GetCameraRects()

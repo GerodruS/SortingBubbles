@@ -46,12 +46,21 @@ public class Crash : MonoBehaviour
                     // simple crash
                     _cooldownCollision.StartTimer(cooldownTimeCollision);
 
-                    r = _bubble.GetRadiusTarget() * (1.0f - penalty);
-                    float oldSize = _bubble.GetRadiusTarget();
-                    _bubble.SetRadius(r);
+                    BubbleController controllerThis = GetComponent<BubbleController>();
+                    if (controllerThis != null && 1 < controllerThis.suffixes.Count)
+                    {
+                        // release bubbles
+                        controllerThis.releaseBubbles();
+                    }
+                    else
+                    {
+                        r = _bubble.GetRadiusTarget() * (1.0f - penalty);
+                        float oldSize = _bubble.GetRadiusTarget();
+                        _bubble.SetRadius(r);
 
-                    r = oldSize - _bubble.GetRadiusTarget();
-                    float summ = generateBubbles(r, coll.relativeVelocity.magnitude);
+                        r = oldSize - _bubble.GetRadiusTarget();
+                        float summ = generateBubbles(r, coll.relativeVelocity.magnitude);
+                    }
                 }
                 else if (bubbleOther != null)
                 {

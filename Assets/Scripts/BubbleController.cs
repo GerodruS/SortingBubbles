@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Eppy;
@@ -101,6 +102,28 @@ public class BubbleController : MonoBehaviour
         //
 
         Destroy(bubbleOther.gameObject);
+    }
+
+
+    public void releaseBubbles()
+    {
+        float[] sizes = _bubble.getSizes();
+        int count = sizes.Length;
+        BubbleController controller = GetComponent<BubbleController>();
+        GameObject managers = GameObject.Find("Managers");
+        GameManager gameManager = managers.GetComponent<GameManager>();
+        for (int i = 0; i < count; ++i)
+        {
+            int n = (int)Char.GetNumericValue(controller.suffixes[i].Item1[1]) - 1;
+            GameObject car = gameManager.CreatePlayer(n);
+            car.rigidbody2D.isKinematic = false;
+            car.transform.position = transform.position;
+            car.rigidbody2D.AddForce(UnityEngine.Random.insideUnitCircle * 100);
+
+            Bubble bubble = car.GetComponent<Bubble>();
+            bubble.SetRadius(sizes[i]);
+        }
+        Destroy(gameObject);
     }
 
 }

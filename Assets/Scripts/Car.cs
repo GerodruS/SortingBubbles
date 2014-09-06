@@ -57,8 +57,6 @@ public class Car : MonoBehaviour
 
     private void Start()
     {
-        rigidbody2D.isKinematic = true;
-
         if (null == _bubble)
         {
             _bubble = GetComponent<Bubble>();
