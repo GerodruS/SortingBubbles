@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraFollowing : MonoBehaviour
 {
     public float maxAngle = 1.0f;
+    public float distance = 1.0f;
 
     private Car _car;
     private BubbleController _bubbleController;
@@ -44,7 +45,10 @@ public class CameraFollowing : MonoBehaviour
                 }
             }
 
+            float posZ = camera.transform.localPosition.z;
+            camera.transform.localPosition = new Vector3(0.0f, 0.0f, posZ);
             camera.transform.Rotate(0.0f, 0.0f, z);
+            camera.transform.localPosition = new Vector3(0.0f, distance, posZ);
         }
     }
 

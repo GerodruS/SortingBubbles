@@ -148,10 +148,10 @@ public class Bubble : MonoBehaviour
         {
             Camera camera = cameras[i];
 
-            float sizeMin = 39.0f * radiusMin;
-            float sizeMax = 21.0f * radiusMax;
+            float sizeMin = 20.0f * radiusMin;
+            float sizeMax = 10.0f * radiusMax;
 
-            float value = radius * 30.0f;
+            float value = radius * 15.0f;
 
             if (value < sizeMin)
             {

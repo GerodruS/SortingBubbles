@@ -12,6 +12,7 @@ public class BubbleSource : MonoBehaviour
 
 
     private Cooldown cooldown;
+    private int carNearbyCount = 0;
 
 
     private void Start()
@@ -23,7 +24,7 @@ public class BubbleSource : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (cooldown.isReady())
+        if (cooldown.isReady() && 0 < carNearbyCount)
         {
             Bubble bubbleNew = (Bubble)Instantiate(bubble, transform.position, Quaternion.identity);
             bubbleNew.radiusStart = 0.0f;
@@ -35,6 +36,7 @@ public class BubbleSource : MonoBehaviour
             resetCooldown();
         }
 
+        carNearbyCount = 0;
         cooldown.Step(Time.deltaTime);
     }
 
@@ -45,6 +47,14 @@ public class BubbleSource : MonoBehaviour
         {
             float time = cooldownMin + (cooldownMax - cooldownMin) * Random.value;
             cooldown.StartTimer(time);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (8 == other.gameObject.layer)
+        {
+            ++carNearbyCount;
         }
     }
 

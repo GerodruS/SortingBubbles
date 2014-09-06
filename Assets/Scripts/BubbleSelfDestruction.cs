@@ -20,11 +20,11 @@ public class BubbleSelfDestruction : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (_cooldown.isReady())
         {
-            if (radiusMin < _bubble.Size)
+            if (radiusMin < _bubble.GetRadius(false))
             {
                 _bubble.SetRadius(0.0f);
             }

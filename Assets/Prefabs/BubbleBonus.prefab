@@ -147,7 +147,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: fc7a776838b35994e8f12d8ecc2d6091, type: 2}
+  - {fileID: 2100000, guid: 1174c524889c75a41ba21425087e2e81, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   verticalSpeed: 5
   radiusStart: 0
   radiusMax: 5
-  radiusMin: .100000001
+  radiusMin: .5
   radiusChangeStep: 1
 --- !u!114 &11400002
 MonoBehaviour:
@@ -243,11 +243,11 @@ MonoBehaviour:
   strength: 1
   cooldownTimeCollision: .100000001
   cooldownTimeIgnore: .100000001
-  penalty: .300000012
+  penalty: .5
   generatedBubble: {fileID: 11400000}
   startForce: 10
-  maxCount: 5
-  absorbationStep: .100000001
+  maxCount: 3
+  absorbationStep: .5
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 10
-  radiusMin: .100000001
+  radiusMin: .699999988
   radiusInfluence: 1
 --- !u!1001 &100100000
 Prefab:
