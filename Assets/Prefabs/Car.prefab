@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngle: .100000001
-  distance: 5
+  distance: 9
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,7 +364,7 @@ MonoBehaviour:
   startRadius: 3
   cooldownTime: 0
   penalty: .100000001
-  startForce: 100
+  startForce: 1000
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
