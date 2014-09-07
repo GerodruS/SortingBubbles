@@ -59,7 +59,10 @@ public class Crash : MonoBehaviour
                         _bubble.SetRadius(r);
 
                         r = oldSize - _bubble.GetRadiusTarget();
-                        float summ = generateBubbles(r, coll.relativeVelocity.magnitude);
+                        if (0.0f < r)
+                        {
+                            float summ = generateBubbles(r, coll.relativeVelocity.magnitude);
+                        }
                     }
                 }
                 else if (bubbleOther != null)
@@ -175,8 +178,9 @@ public class Crash : MonoBehaviour
                        0.1f + Random.value * 0.8f) * value;
 
             bubbleNew.SetRadius(r);
-            result += bubbleNew.GetRadiusTarget();
-            if (value < result)
+            r = bubbleNew.GetRadiusTarget();
+            result += r;
+            if (value < r)
             {
                 Destroy(bubbleNew.gameObject);
                 value = 0;

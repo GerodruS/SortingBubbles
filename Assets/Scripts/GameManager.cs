@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
     {
         var cameraRectangles = GetCameraRects();
 
-        Debug.Log("Create " + i);
+        //Debug.Log("Create " + i);
         var car = Instantiate(carPrefab, playerPositions[i], Quaternion.identity) as Transform;
         car.rigidbody2D.isKinematic = true;
         var controller = car.GetComponent<BubbleController>();

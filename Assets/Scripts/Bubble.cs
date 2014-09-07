@@ -139,6 +139,8 @@ public class Bubble : MonoBehaviour
             }
         }
 
+        rigidbody2D.mass = Size;
+
         float radius = GetRadius(true);
         float diameter = 2.0f * radius;
         transform.localScale = new Vector3(diameter, diameter, diameter);
@@ -151,7 +153,7 @@ public class Bubble : MonoBehaviour
             float sizeMin = 30.0f * radiusMin;
             float sizeMax = 15.0f * radiusMax;
 
-            float value = radius * 20.0f * rigidbody2D.velocity.magnitude;
+            float value = radius * 20.0f + 0.5f * rigidbody2D.velocity.magnitude;
 
             if (value < sizeMin)
             {
@@ -178,7 +180,7 @@ public class Bubble : MonoBehaviour
             }
             v.Normalize();
 
-            rigidbody2D.AddForce(v * verticalSpeed * Size);
+            rigidbody2D.AddForce(rigidbody2D.mass * v * verticalSpeed * GetRadius(true));
             _currentDirection = v;
 
             directions.Clear();

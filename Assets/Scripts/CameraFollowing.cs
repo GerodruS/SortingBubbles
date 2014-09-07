@@ -8,11 +8,13 @@ public class CameraFollowing : MonoBehaviour
 
     private Car _car;
     private BubbleController _bubbleController;
+    private Bubble _bubble;
 
     private void Start()
     {
         _car = GetComponent<Car>();
         _bubbleController = GetComponent<BubbleController>();
+        _bubble = GetComponent<Bubble>();
     }
 
 
@@ -48,7 +50,7 @@ public class CameraFollowing : MonoBehaviour
             float posZ = camera.transform.localPosition.z;
             camera.transform.localPosition = new Vector3(0.0f, 0.0f, posZ);
             camera.transform.Rotate(0.0f, 0.0f, z);
-            camera.transform.localPosition = new Vector3(0.0f, distance, posZ);
+            camera.transform.localPosition = new Vector3(0.0f, distance * distance / gameObject.transform.localScale.x, posZ);
         }
     }
 

@@ -41,9 +41,9 @@ public class BubbleController : MonoBehaviour
         if (0.0f < Mathf.Abs(horizontalValue))
         {
             horizontalValue *= horizontalSpeed;
-            horizontalValue *= _bubble.Size;
+            //horizontalValue *= _bubble.GetRadius(true);
             Quaternion q = Quaternion.EulerAngles(0.0f, 0.0f, -90.0f);
-            rigidbody2D.AddForce(q * _bubble.CurrentDirection * horizontalValue);
+            rigidbody2D.AddForce(q * _bubble.CurrentDirection * rigidbody2D.mass * horizontalValue);
         }
         
         _car.ChangeRadiusTo(verticalValue);
@@ -118,7 +118,7 @@ public class BubbleController : MonoBehaviour
             GameObject car = gameManager.CreatePlayer(n);
             car.rigidbody2D.isKinematic = false;
             car.transform.position = transform.position;
-            car.rigidbody2D.AddForce(UnityEngine.Random.insideUnitCircle * 100);
+            car.rigidbody2D.AddForce(car.rigidbody2D.mass * UnityEngine.Random.insideUnitCircle * 100);
 
             Bubble bubble = car.GetComponent<Bubble>();
             bubble.SetRadius(sizes[i]);

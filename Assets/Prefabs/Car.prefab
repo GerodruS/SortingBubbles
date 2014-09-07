@@ -53,6 +53,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 58: {fileID: 5800002}
+  - 114: {fileID: 11400012}
   m_Layer: 8
   m_Name: Car
   m_TagString: Cars
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a643f8fb560017343bc17c2d7622a966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAngle: 1
+  maxAngle: .100000001
   distance: 5
 --- !u!114 &11400002
 MonoBehaviour:
@@ -301,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8e454b54d7a0843a611ed926e88b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 10
+  horizontalSpeed: 40
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,11 +328,11 @@ MonoBehaviour:
   strength: 1
   cooldownTimeCollision: .100000001
   cooldownTimeIgnore: .100000001
-  penalty: .200000003
+  penalty: .400000006
   generatedBubble: {fileID: 11400000, guid: 4ef0c3510c7a4d747a9533eaf9f311bc, type: 2}
   startForce: 100
   maxCount: 5
-  absorbationStep: .5
+  absorbationStep: 2
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -343,11 +344,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926943d33ee5271459b62c25dd95f8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 4
+  verticalSpeed: 10
   radiusStart: 2
   radiusMax: 10
   radiusMin: .699999988
   radiusChangeStep: 1
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fe83ac2d01368489f8dd33152e6eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generatedBubble: {fileID: 100000, guid: 4ef0c3510c7a4d747a9533eaf9f311bc, type: 2}
+  startRadius: 3
+  cooldownTime: 0
+  penalty: .100000001
+  startForce: 100
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

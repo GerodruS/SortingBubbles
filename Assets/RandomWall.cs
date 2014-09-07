@@ -16,5 +16,6 @@ public class RandomWall : MonoBehaviour
         float start = -0.5f + positionsCount / 2.0f;
         int n = (int)(Random.value * positionsCount);
         wall.transform.localPosition = new Vector3(-start + n, 0.0f, 0.0f);
+        wall.transform.rotation = Quaternion.EulerAngles(0.0f, 0.0f, (n - start) * -30.0f);
     }
 }
